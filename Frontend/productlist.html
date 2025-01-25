@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furniture Store</title>
+    <link rel="stylesheet" href="css/productlist.css">
+</head>
+<body>
+    <!-- Taskbar / Navigation Bar -->
+    <header>
+        <div class="logo">CraftedSpace</div>
+        <div class="search-bar">
+            <input type="text" id="search-bar" placeholder="Search by category" onkeyup="searchProducts()">
+        </div>
+        <div class="cart">
+            <img src="images/cart-icon.png" alt="Cart" id="cart-icon">
+        </div>
+    </header>
+
+    <!-- Product List -->
+    <section id="product-list">
+        <div class="product">
+            <img src="images/sofa11.webp" alt="Sofa">
+            <h3>Sofa</h3>
+            <p>Living Room</p>
+            <span>€450</span> <!-- Price converted to Euro -->
+            <button class="view-details" onclick="window.location.href='productdetails.html'"> View Details >></button>
+        </div>
+        <div class="product">
+            <img src="images/dining.jpg" alt="Dining Table">
+            <h3>Dining Table</h3>
+            <p>Dining</p>
+            <span>€630</span> <!-- Price converted to Euro -->
+            <button class="view-details"> View Details >></button>
+        </div>
+        <div class="product">
+            <img src="images/chair.jpg" alt="Chair">
+            <h3>Chair</h3>
+            <p>Office</p>
+            <span>€135</span> <!-- Price converted to Euro -->
+            <button class="view-details"> View Details >></button>
+        </div>
+
+        <div class="product">
+            <img src="images/coffee.jpg" alt="Coffee Table">
+            <h3>Coffee Table</h3>
+            <p>Living Room</p>
+            <span>€225</span> <!-- Price converted to Euro -->
+            <button class="view-details"> View Details >></button>
+        </div>
+        <div class="product">
+            <img src="images/bed.jpg" alt="Bed">
+            <h3>Bed</h3>
+            <p>Bedroom</p>
+            <span>€810</span> <!-- Price converted to Euro -->
+            <button class="view-details"> View Details >></button>
+        </div>
+        <div class="product">
+            <img src="images/cabinet.jpg" alt="Cabinet">
+            <h3>Cabinet</h3>
+            <p>Storage</p>
+            <span>€315</span> <!-- Price converted to Euro -->
+            <button class="view-details"> View Details >></button>
+        </div>
+    </section>
+
+
+</body>
+</html>
