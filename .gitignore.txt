@@ -1,0 +1,5 @@
+# Ignore build and compiled files
+Backend/target/
+Backend/.idea/
+*.class
+*.log
