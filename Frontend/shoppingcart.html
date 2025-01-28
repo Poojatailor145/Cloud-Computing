@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Shopping Cart</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ece9e6, #ffffff);
+      color: #333;
+    }
+
+    .cart-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: #fff;
+    }
+
+    .cart-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: #444;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item img {
+      width: 100px; /* Fixed width */
+      height: 100px; /* Fixed height */
+      object-fit: cover; /* Ensures the image scales without distortion */
+      margin-right: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item-details {
+      flex: 2;
+    }
+
+    .cart-item-details p {
+      margin: 5px 0;
+    }
+
+    .cart-item-actions {
+      text-align: right;
+    }
+
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .cart-item-quantity button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+
+    .cart-item-quantity button:hover {
+      background-color: #0056b3;
+    }
+
+    .cart-item-quantity button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .cart-item-quantity span {
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .cart-summary {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .checkout-button {
+      background: linear-gradient(to right, #28a745, #218838);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+
+    .checkout-button:hover {
+      background: linear-gradient(to right, #218838, #19692c);
+    }
+
+    .voucher-input {
+      margin-top: 10px;
+    }
+
+    .voucher-input input {
+      padding: 5px 10px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    .voucher-input button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+
+    .voucher-input button:hover {
+      background-color: #0056b3;
+    }
+
+    .voucher-message {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-container">
+    <h1 class="cart-title">Your Shopping Cart</h1>
+    <div id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+    <div class="cart-summary">
+      <div class="voucher-input">
+        <input type="text" id="voucher-code" placeholder="Enter voucher code">
+        <button onclick="applyVoucher()">Apply Voucher</button>
+      </div>
+      <p id="voucher-message" class="voucher-message" style="display: none;"></p>
+      <p>Total: <span id="cart-total">€0.00</span></p>
+      <button class="checkout-button">Proceed to Checkout</button>
+    </div>
+  </div>
+  <footer>
+    © 2025 Modern Furniture Store. All rights reserved.
+  </footer>
+
+  <script>
+    const cartItems = [
+      { 
+        id: 1, 
+        name: "Modern Coffee Table", 
+        price: 149.99, 
+        quantity: 1, 
+        image: "https://ik.imagekit.io/2xkwa8s1i/img/npl_modified_images/WMCF_Image/WMCFTFRAPPER2/WMCFTFRAPPER2_1.jpg?tr=w-1200" 
+      },
+      { 
+        id: 2, 
+        name: "Premium Leather Sofa", 
+        price: 499.99, 
+        quantity: 1, 
+        image: "https://www.estre.in/cdn/shop/files/1-min_fc2e5569-9bfc-4765-9cff-9f0a0cfa719f.png?v=1734170209" 
+      },
+    ];
+
+    const validVouchers = {
+      DISCOUNT10: 0.1, // 10% discount
+      SAVE20: 0.2, // 20% discount
+    };
+
+    let discount = 0;
+
+    function applyVoucher() {
+      const voucherInput = document.getElementById('voucher-code');
+      const voucherMessage = document.getElementById('voucher-message');
+      const voucherCode = voucherInput.value.trim().toUpperCase();
+
+      if (validVouchers[voucherCode]) {
+        discount = validVouchers[voucherCode];
+        voucherMessage.textContent = `Voucher applied: ${voucherCode} (${discount * 100}% off)`;
+        voucherMessage.style.display = 'block';
+        voucherMessage.style.color = 'green';
+        renderCart();
+      } else {
+        voucherMessage.textContent = 'Invalid voucher code!';
+        voucherMessage.style.display = 'block';
+        voucherMessage.style.color = 'red';
+      }
+    }
+
+    function renderCart() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      let total = 0;
+
+      cartItemsContainer.innerHTML = '';
+      cartItems.forEach(item => {
+        total += item.price * item.quantity;
+
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-details">
+            <p>${item.name}</p>
+            <p>€${item.price.toFixed(2)}</p>
+          </div>
+          <div class="cart-item-actions">
+            <div class="cart-item-quantity">
+              <button onclick="changeQuantity(${item.id}, -1)" ${item.quantity === 1 ? 'disabled' : ''}>-</button>
+              <span>${item.quantity}</span>
+              <button onclick="changeQuantity(${item.id}, 1)">+</button>
+            </div>
+            <button onclick="removeItem(${item.id})">Remove</button>
+          </div>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+      });
+
+      if (discount > 0) {
+        total = total - total * discount;
+      }
+
+      cartTotal.textContent = `€${total.toFixed(2)}`;
+    }
+
+    function changeQuantity(id, change) {
+      const item = cartItems.find(item => item.id === id);
+      if (item) {
+        item.quantity += change;
+        renderCart();
+      }
+    }
+
+    function removeItem(id) {
+      const index = cartItems.findIndex(item => item.id === id);
+      if (index !== -1) {
+        cartItems.splice(index, 1);
+        renderCart();
+      }
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
