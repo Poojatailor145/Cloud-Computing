@@ -1,4 +1,4 @@
-package com.webshop.backend.product;
+package com.webshop.backend;
 
 import jakarta.persistence.*;
 import lombok.*;

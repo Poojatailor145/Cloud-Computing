@@ -1,7 +1,5 @@
-package com.webshop.backend.product;
+package com.webshop.backend;
 
-import com.webshop.backend.product.Product;
-import com.webshop.backend.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +52,15 @@ public class ProductService {
     public void deleteProduct(Long productId) {
         productRepository.deleteById(productId);
     }
+
+    public List<Product> searchProductsByName(String productName) {
+        return productRepository.findByProductNameContainingIgnoreCase(productName);
+
+    }
+
+//    public List<Product> filterProducts(Double minPrice, Double maxPrice, String category) {
+//        return productRepository.findByPriceBetweenAndCategory(minPrice, maxPrice, category);
+//    }
+//}
 }
 
