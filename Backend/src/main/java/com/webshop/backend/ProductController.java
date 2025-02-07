@@ -1,7 +1,5 @@
-package com.webshop.backend.product;
+package com.webshop.backend;
 
-import com.webshop.backend.product.Product;
-import com.webshop.backend.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +41,18 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String productName) {
+        return ResponseEntity.ok(productService.searchProductsByName(productName));
+    }
+
+//    @GetMapping("/filter")
+//    public ResponseEntity<List<Product>> filterProducts(
+//            @RequestParam(required = false) Double minPrice,
+//            @RequestParam(required = false) Double maxPrice,
+//            @RequestParam(required = false) String category) {
+//        return ResponseEntity.ok(productService.filterProducts(minPrice, maxPrice, category));
+//    }
 
 }
