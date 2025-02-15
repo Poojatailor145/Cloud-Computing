@@ -2,15 +2,21 @@ package com.webshop.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private InventoryManagement inventoryManagement;
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     public Product createProduct(Product product) {
         return productRepository.save(product);
@@ -19,12 +25,6 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
-//    public List<Product> getAllProducts() {
-//        List<Product> products = productRepository.findAll();
-//        System.out.println("Fetched products: " + products);  // Debugging Log
-//        return products;
-//    }
 
     public Optional<Product> getProductById(Long productId) {
         return productRepository.findById(productId);
@@ -57,10 +57,5 @@ public class ProductService {
         return productRepository.findByProductNameContainingIgnoreCase(productName);
 
     }
-
-//    public List<Product> filterProducts(Double minPrice, Double maxPrice, String category) {
-//        return productRepository.findByPriceBetweenAndCategory(minPrice, maxPrice, category);
-//    }
-//}
 }
 

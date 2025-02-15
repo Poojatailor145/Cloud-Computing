@@ -47,12 +47,4 @@ public class ProductController {
         return ResponseEntity.ok(productService.searchProductsByName(productName));
     }
 
-//    @GetMapping("/filter")
-//    public ResponseEntity<List<Product>> filterProducts(
-//            @RequestParam(required = false) Double minPrice,
-//            @RequestParam(required = false) Double maxPrice,
-//            @RequestParam(required = false) String category) {
-//        return ResponseEntity.ok(productService.filterProducts(minPrice, maxPrice, category));
-//    }
-
 }
