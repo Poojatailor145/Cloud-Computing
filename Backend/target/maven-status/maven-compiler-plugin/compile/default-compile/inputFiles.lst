@@ -4,6 +4,8 @@ C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\w
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\InventoryManagement.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\Order.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\OrderItem.java
+C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\OrderItemResponse.java
+C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\OrderResponse.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\Product.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\model\User.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\repository\OrderItemRepository.java
@@ -12,4 +14,5 @@ C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\w
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\repository\UserRepository.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\service\OrderService.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\service\ProductService.java
+C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\service\UserService.java
 C:\Users\aerik\IdeaProjects\Cloud-ComputingNewUpdate\Backend\src\main\java\com\webshop\backend\WebshopBackendApplication.java
