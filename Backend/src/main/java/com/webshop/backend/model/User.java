@@ -1,5 +1,6 @@
 package com.webshop.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,7 @@ public class User {
     private String address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> orders;
 
     // Getters and setters

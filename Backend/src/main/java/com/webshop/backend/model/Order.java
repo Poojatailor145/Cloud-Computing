@@ -1,5 +1,6 @@
 package com.webshop.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<OrderItem> orderItems;
 
     private String status;

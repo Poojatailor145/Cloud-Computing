@@ -2,7 +2,6 @@ package com.webshop.backend.controller;
 
 import com.webshop.backend.model.Order;
 import com.webshop.backend.model.OrderItem;
-import com.webshop.backend.model.OrderResponse;
 import com.webshop.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/{userId}")
-    public ResponseEntity<OrderResponse> createOrder(@PathVariable Long userId, @RequestBody List<OrderItem> orderItems) {
+    public ResponseEntity<Order> createOrder(@PathVariable Long userId, @RequestBody List<OrderItem> orderItems) {
         return ResponseEntity.ok(orderService.createOrder(userId, orderItems));
     }
 

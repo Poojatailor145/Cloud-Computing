@@ -3,6 +3,7 @@ package com.webshop.backend.service;
 import com.webshop.backend.model.*;
 import com.webshop.backend.repository.OrderRepository;
 import com.webshop.backend.repository.OrderItemRepository;
+import com.webshop.backend.repository.ProductRepository;
 import com.webshop.backend.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,24 @@ public class OrderService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
 
-    public OrderResponse createOrder(Long userId, List<OrderItem> orderItems) {
+
+    public Order createOrder(Long userId, List<OrderItem> orderItems) {
         // Retrieve the user
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+
+        orderItems.forEach(item -> {
+            if (item.getProduct() != null && item.getProduct().getProductId() != null) {
+                Product fullProduct = productRepository.findById(item.getProduct().getProductId())
+                        .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + item.getProduct().getProductId()));
+                item.setProduct(fullProduct);
+            } else {
+                throw new IllegalArgumentException("Product must be provided for each order item");
+            }
+        });
 
         // Calculate total amount
         BigDecimal totalAmount = orderItems.stream()
@@ -50,11 +64,9 @@ public class OrderService {
         orderItems.forEach(item -> item.setOrder(order));
         order.setOrderItems(orderItems);
 
-        // Save the Order (this will cascade persist the OrderItems, if configured)
-        Order savedOrder = orderRepository.save(order);
 
-        // Convert the saved Order entity to OrderResponse DTO
-        return convertToResponse(savedOrder);
+        return orderRepository.save(order);
+
     }
 
 
@@ -77,26 +89,4 @@ public class OrderService {
         orderRepository.deleteById(orderId);
     }
 
-    private OrderResponse convertToResponse(Order order) {
-        OrderResponse response = new OrderResponse();
-        response.setOrderId(order.getOrderId());
-        response.setUserId(order.getUser().getUserId());
-        response.setStatus(order.getStatus());
-        response.setTotalAmount(order.getTotalAmount());
-        response.setShippingAddress(order.getShippingAddress());
-        response.setOrderDate(order.getOrderDate());
-
-        List<OrderItemResponse> itemResponses = order.getOrderItems().stream().map(item -> {
-            OrderItemResponse itemResponse = new OrderItemResponse();
-            itemResponse.setOrderItemId(item.getOrderItemId());
-            // Assuming product is not null and has a productId
-            itemResponse.setProductId(item.getProduct() != null ? item.getProduct().getProductId() : null);
-            itemResponse.setQuantity(item.getQuantity());
-            itemResponse.setUnitPrice(item.getUnitPrice());
-            return itemResponse;
-        }).collect(Collectors.toList());
-
-        response.setOrderItems(itemResponses);
-        return response;
-    }
 }
