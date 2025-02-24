@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.webshop.backend.WebshopBackendApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.504 s -- in com.webshop.backend.WebshopBackendApplicationTests
