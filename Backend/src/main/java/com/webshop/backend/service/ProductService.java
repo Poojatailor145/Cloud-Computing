@@ -60,5 +60,10 @@ public class ProductService {
         return productRepository.findByProductNameContainingIgnoreCase(productName);
 
     }
+
+    public List<Product> getProductsByCategoryId(Integer categoryId) {
+        logger.info("Fetching products with categoryId: {}", categoryId);
+        return productRepository.findByCategoryId(categoryId);
+    }
 }
 

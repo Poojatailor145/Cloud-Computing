@@ -49,4 +49,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.searchProductsByName(productName));
     }
 
+    @GetMapping("/categoryList/{catagoryId}")
+    public ResponseEntity<List<Product>> getProductByCategory(@PathVariable Integer catagoryId) {
+        return ResponseEntity.ok(productService.getProductsByCategoryId(catagoryId));
+    }
 }
