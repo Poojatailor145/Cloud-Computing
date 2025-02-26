@@ -334,6 +334,26 @@ table{
     column-gap: 0.5rem;
 }
 
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.filters__group {
+    margin-right: 20px;
+}
+
+.filter__select,
+.price__filter input{
+    padding: 8px;
+    width: 150px;
+}
+
+.price__filter span {
+    margin: 0 5px;
+}
+
 /*=============== CATEGORIES ===============*/
 .categories{
     overflow: hidden;
