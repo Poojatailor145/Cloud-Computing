@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +17,6 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
-    private InventoryManagement inventoryManagement;
 
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
@@ -61,9 +60,11 @@ public class ProductService {
 
     }
 
+
     public List<Product> getProductsByCategoryId(Integer categoryId) {
-        logger.info("Fetching products with categoryId: {}", categoryId);
-        return productRepository.findByCategoryId(categoryId);
+        return productRepository.findAll().stream()
+                .filter(product -> product.getCategoryId() != null && product.getCategoryId().equals(categoryId))
+                .collect(Collectors.toList());
     }
 }
 
