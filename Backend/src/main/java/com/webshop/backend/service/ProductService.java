@@ -18,6 +18,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private InventoryManagement inventoryManagement;
+
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     public Product createProduct(Product product) {
