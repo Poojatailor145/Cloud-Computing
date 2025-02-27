@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -42,5 +44,14 @@ public class OrderController {
     public ResponseEntity<Void> deleteOrder(@PathVariable Long orderId) {
         orderService.deleteOrder(orderId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/user/{userId}/order/{orderId}/status")
+    public ResponseEntity<Map<String, String>> getUserOrderStatus(@PathVariable Long userId, @PathVariable Long orderId) {
+        return orderService.getOrderById(orderId)
+                .filter(order -> order.getUser().getUserId().equals(userId))
+                .map(order -> ResponseEntity.ok(Collections.singletonMap("status", order.getStatus())))
+                .orElse(ResponseEntity.status(404)
+                        .body(Collections.singletonMap("error", "No order for this user found")));
     }
 }

@@ -5,10 +5,17 @@ import java.math.BigDecimal;
 public class PaymentRequest {
     private Long orderId;
     private Long userId;
-    private String paymentMethod;
+    private String paymentMethod; // Allowed: "paypal", "creditcard", "debitcard"
+
+    // Fields for card payments:
     private String cardNumber;
     private String cardExpiry;
     private String cardCvv;
+
+    // Fields for PayPal:
+    private String paypalEmail;
+    private String paypalPassword;
+
     private BigDecimal amount;
 
     // Getters and setters
@@ -47,6 +54,18 @@ public class PaymentRequest {
     }
     public void setCardCvv(String cardCvv) {
         this.cardCvv = cardCvv;
+    }
+    public String getPaypalEmail() {
+        return paypalEmail;
+    }
+    public void setPaypalEmail(String paypalEmail) {
+        this.paypalEmail = paypalEmail;
+    }
+    public String getPaypalPassword() {
+        return paypalPassword;
+    }
+    public void setPaypalPassword(String paypalPassword) {
+        this.paypalPassword = paypalPassword;
     }
     public BigDecimal getAmount() {
         return amount;
