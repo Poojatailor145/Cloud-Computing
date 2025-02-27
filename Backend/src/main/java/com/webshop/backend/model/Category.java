@@ -2,12 +2,14 @@ package com.webshop.backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "categories")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Component
 public class Category {
 
     @Id

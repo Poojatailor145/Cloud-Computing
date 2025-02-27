@@ -3,6 +3,7 @@ package com.webshop.backend.service;
 import com.webshop.backend.model.Category;
 import com.webshop.backend.repository.CategoryRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +14,11 @@ import java.util.Optional;
 @Transactional
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
-
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public Category createCategory(Category category) {
+        category.setCategoryId(null);
         return categoryRepository.save(category);
     }
 
