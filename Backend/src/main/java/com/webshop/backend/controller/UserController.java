@@ -28,9 +28,8 @@ public class UserController {
     // Retrieve a user by ID
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
-        Optional<User> optionalUser = userService.getUserById(userId);
-        return optionalUser.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        User user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
     }
 
     // Retrieve all users

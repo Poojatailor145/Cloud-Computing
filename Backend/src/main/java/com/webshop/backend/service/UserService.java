@@ -2,6 +2,7 @@ package com.webshop.backend.service;
 
 import com.webshop.backend.model.User;
 import com.webshop.backend.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -37,11 +38,13 @@ public class UserService {
     /**
      * Retrieves a user by ID.
      */
-    public Optional<User> getUserById(Long userId) {
-        Optional<User> user = userRepository.findById(userId);
+    public User getUserById(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("No user found with id: " + userId));
         logger.info("Retrieved User with ID {}: {}", userId, user);
         return user;
     }
+
 
     /**
      * Updates a user's details.

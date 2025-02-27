@@ -1,9 +1,12 @@
 package com.webshop.backend.controller;
 
+import com.webshop.backend.dto.OrderResponse;
 import com.webshop.backend.model.Order;
 import com.webshop.backend.model.OrderItem;
 import com.webshop.backend.service.OrderService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +23,12 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/{userId}")
-    public ResponseEntity<Order> createOrder(@PathVariable Long userId, @RequestBody List<OrderItem> orderItems) {
+    public ResponseEntity<OrderResponse> createOrder(@PathVariable Long userId, @RequestBody List<OrderItem> orderItems) {
         return ResponseEntity.ok(orderService.createOrder(userId, orderItems));
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<Optional<Order>> getOrderById(@PathVariable Long orderId) {
+    public ResponseEntity<Order> getOrderById(@PathVariable Long orderId) {
         return ResponseEntity.ok(orderService.getOrderById(orderId));
     }
 
@@ -48,10 +51,17 @@ public class OrderController {
 
     @GetMapping("/user/{userId}/order/{orderId}/status")
     public ResponseEntity<Map<String, String>> getUserOrderStatus(@PathVariable Long userId, @PathVariable Long orderId) {
-        return orderService.getOrderById(orderId)
-                .filter(order -> order.getUser().getUserId().equals(userId))
-                .map(order -> ResponseEntity.ok(Collections.singletonMap("status", order.getStatus())))
-                .orElse(ResponseEntity.status(404)
-                        .body(Collections.singletonMap("error", "No order for this user found")));
+        try {
+            Order order = orderService.getOrderById(orderId);
+            if (!order.getUser().getUserId().equals(userId)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("error", "No order for this user found"));
+            }
+            return ResponseEntity.ok(Collections.singletonMap("status", order.getStatus()));
+        } catch (EntityNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error", ex.getMessage()));
+        }
     }
+
 }
