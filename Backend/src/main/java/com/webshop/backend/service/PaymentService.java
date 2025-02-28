@@ -2,15 +2,14 @@ package com.webshop.backend.service;
 
 import com.webshop.backend.dto.PaymentRequest;
 import com.webshop.backend.dto.PaymentResponse;
-import com.webshop.backend.model.Order;
-import com.webshop.backend.model.OrderItem;
-import com.webshop.backend.model.Payment;
-import com.webshop.backend.model.Product;
+import com.webshop.backend.model.*;
 import com.webshop.backend.repository.OrderRepository;
 import com.webshop.backend.repository.PaymentRepository;
 import com.webshop.backend.repository.ProductRepository;
 import com.webshop.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
@@ -28,11 +27,13 @@ public class PaymentService {
     private ProductRepository productRepository;
     @Autowired
     private UserRepository userRepository;
-
-
+    @Autowired
+    private InventoryManagement inventoryManagement;
+    @Autowired
+    private JavaMailSender mailSender;
 
     public PaymentResponse processPayment(PaymentRequest request) {
-        // Check if the order exists
+        System.out.println("TEST");
         Optional<Order> optionalOrder = orderRepository.findById(request.getOrderId());
         if (optionalOrder.isEmpty()) {
             PaymentResponse response = new PaymentResponse();
@@ -42,7 +43,6 @@ public class PaymentService {
         }
         Order order = optionalOrder.get();
 
-        // Verify that the order belongs to the given user
         if (order.getUser() == null || !order.getUser().getUserId().equals(request.getUserId())) {
             PaymentResponse response = new PaymentResponse();
             response.setStatus("FAILED");
@@ -50,7 +50,6 @@ public class PaymentService {
             return response;
         }
 
-        // If the order is already confirmed, return a response indicating payment is already done
         if (order.getStatus() != null && order.getStatus().equalsIgnoreCase("Confirmed")) {
             PaymentResponse response = new PaymentResponse();
             response.setOrderId(order.getOrderId());
@@ -60,7 +59,6 @@ public class PaymentService {
             return response;
         }
 
-        // Validate payment method and required fields
         boolean validPaymentMethod = false;
         String errorMessage = null;
 
@@ -89,7 +87,6 @@ public class PaymentService {
 
         Payment payment;
         if (!validPaymentMethod) {
-            // Create a failed payment record
             payment = Payment.builder()
                     .order(order)
                     .user(order.getUser())
@@ -103,7 +100,7 @@ public class PaymentService {
             order.setStatus("Payment Failed");
             orderRepository.save(order);
         } else {
-            // Simulate a successful payment
+            System.out.println("test else");
             payment = Payment.builder()
                     .order(order)
                     .user(order.getUser())
@@ -116,20 +113,44 @@ public class PaymentService {
             paymentRepository.save(payment);
             order.setStatus("Confirmed");
             orderRepository.save(order);
-
-            // Decrease stock for each product in the order
+            System.out.println("Test 1");
             for (OrderItem item : order.getOrderItems()) {
+                System.out.println("Test 2");
                 Product product = item.getProduct();
                 if (product != null) {
+                    System.out.println("Test3");
                     int currentStock = product.getStockQuantity() != null ? product.getStockQuantity() : 0;
                     int newStock = currentStock - item.getQuantity();
                     product.setStockQuantity(newStock);
                     productRepository.save(product);
+                    System.out.println("Before check");
+                    inventoryManagement.checkStockAndNotify(product);
                 }
             }
+            sendOrderConfirmationEmail(order);
         }
 
         return mapToPaymentResponse(payment);
+    }
+
+    private void sendOrderConfirmationEmail(Order order) {
+        System.out.println("Email start");
+        String userEmail = order.getUser().getEmail();
+        String subject = "Order Confirmation - " + order.getOrderId();
+        String message = "Dear " + order.getUser().getFullName() + ",\n\n" +
+                "Thank you for your purchase! Your order has been confirmed.\n" +
+                "Order ID: " + order.getOrderId() + "\n" +
+                "Total Amount: " + order.getTotalAmount() + "\n\n" +
+                "We will notify you once your order is shipped.";
+        System.out.println("Email code: "+ message);
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userEmail);
+        mailMessage.setSubject(subject);
+        mailMessage.setText(message);
+
+        mailSender.send(mailMessage);
+        System.out.println("USer email"+userEmail);
+        System.out.println("Email end");
     }
 
     private PaymentResponse mapToPaymentResponse(Payment payment) {
