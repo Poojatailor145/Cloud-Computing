@@ -1,0 +1,35 @@
+sequenceDiagram
+    actor User
+    participant Frontend
+    participant APIGateway
+    participant Services
+    participant Database
+    participant ExternalSystems
+    
+    %% User Registration/Login
+    User->>Frontend: 1. Register/Login
+    Frontend->>APIGateway: 2. Auth Request
+    APIGateway->>Services: 3. Validate Credentials
+    Services->>Database: 4. Store/Verify User
+    Database-->>Services: 5. Confirmation
+    Services-->>Frontend: 6. Auth Token
+    Frontend-->>User: 7. Login Success
+    
+    %% Product Browse and Purchase
+    User->>Frontend: 8. Browse Products
+    Frontend->>APIGateway: 9. Request Products
+    APIGateway->>Services: 10. Fetch Products
+    Services->>Database: 11. Query Products
+    Database-->>Services: 12. Product Data
+    Services-->>Frontend: 13. Product List
+    Frontend-->>User: 14. Display Products
+    
+    User->>Frontend: 15. Purchase Item
+    Frontend->>APIGateway: 16. Create Order
+    APIGateway->>Services: 17. Process Order
+    Services->>ExternalSystems: 18. Process Payment
+    ExternalSystems-->>Services: 19. Payment Confirmed
+    Services->>Database: 20. Save Order
+    Database-->>Services: 21. Order Saved
+    Services-->>Frontend: 22. Order Confirmation
+    Frontend-->>User: 23. Order Success
