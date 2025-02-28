@@ -3,59 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== FLATICON ===============-->
-    <link
-        rel="stylesheet"
-        href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
-
-    <!--=============== SWIPER CSS ===============-->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
-
     <title>Coziture</title>
   </head>
   <body>
     <!--=============== HEADER ===============-->
     <header class="header">
-        <nav class="nav container">
-            <a href="index.html" class="nav__logo">
-                <img src="images/logo.png" alt="" class="nav__logo-img">
-            </a>
-
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="index.html" class="nav__link ">Home</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="shop.html" class="nav__link">Shop</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="accounts.html" class="nav__link active-link">My Account</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="login-register.html" class="nav__link">Login</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="header__user-actions">
-                <a href="cart.html" class="header__action-btn">
-                    <img src="images/icon-cart.svg" alt="">
-                    <span class="count">3</span>
-                </a>
-            </div>
-        </nav>
+      <nav class="nav container">
+        <a href="index.html" class="nav__logo"><img src="images/logo.png" alt="" class="nav__logo-img" /></a>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+            <li class="nav__item"><a href="shop.html" class="nav__link">Shop</a></li>
+            <li class="nav__item"><a href="accounts.html" class="nav__link active-link">My Account</a></li>
+          </ul>
+        </div>
+        <div class="header__user-actions">
+          <a href="cart.html" class="header__action-btn">
+            <img src="images/icon-cart.svg" alt="" />
+            <span class="count" id="cart-count">0</span>
+          </a>
+        </div>
+      </nav>
     </header>
 
     <!--=============== MAIN ===============-->
@@ -63,138 +34,77 @@
       <!--=============== BREADCRUMB ===============-->
       <section class="breadcrumb">
         <div class="breadcrumb__list container">
-            <a href="index.html" class="breadcrumb__link">Home</a>  
-            <span class="breadcrumb__link">></span>  
-            <span class="breadcrumb__link">Account</span> 
+          <a href="index.html" class="breadcrumb__link">Home</a>
+          <span class="breadcrumb__link">></span>
+          <span class="breadcrumb__link">Account</span>
         </div>
       </section>
 
       <!--=============== ACCOUNTS ===============-->
       <section class="accounts section--lg">
         <div class="accounts__container container grid">
-            <div class="account__tabs">
-                <p class="account__tab active-tab" data-target="#dashboard">
-                    <i class="fi fi-rs-settings-sliders"></i> Dashboard
-                </p>
+          <div class="account__tabs">
+            <p class="account__tab active-tab" data-target="#dashboard">
+              <i class="fi fi-rs-settings-sliders"></i> Dashboard
+            </p>
 
-                <p class="account__tab " data-target="#orders">
-                    <i class="fi fi-rs-shopping-bag"></i> Orders
-                </p>
+            <p class="account__tab" data-target="#orders">
+              <i class="fi fi-rs-shopping-bag"></i> Orders
+            </p>
 
-                <p class="account__tab " data-target="#update-profile">
-                    <i class="fi fi-rs-user"></i> Update Profile
-                </p>
-                
-                <p class="account__tab " data-target="#address">
-                    <i class="fi fi-rs-marker"></i> My Address
-                </p>
+            <p class="account__tab" data-target="#address">
+              <i class="fi fi-rs-marker"></i> My Address
+            </p>
+          </div>
 
-                <p class="account__tab " data-target="#change-password">
-                    <i class="fi fi-rs-user"></i> Change Password
+          <div class="tabs__content">
+            <!-- Dashboard Section -->
+            <div class="tab__content active-tab" content id="dashboard">
+              <h3 class="tab__header">Hello <span id="user-name">Pooja</span>!</h3>
+              <div class="tab__body">
+                <p class="tab__description">
+                  From your account dashboard, you can easily check and view your recent orders, manage your shipping and billing
+                  addresses, and edit your password and account details.
                 </p>
-
-                <p class="account__tab">
-                    <i class="fi fi-rs-exit"></i> Logout
-                </p>
+              </div>
             </div>
 
-            <div class="tabs__content">
-                <div class="tab__content active-tab" content id="dashboard">
-                    <h3 class="tab__header">Hello Pooja!</h3>
-                    <div class="tab__body">
-                        <p class="tab__description">From your account dashboard, you can easily check and view your recent orders,manage your shipping and billing addresses and edit your password and account details.</p>
-                    </div>
+            <!-- Orders Section -->
+            <div class="tab__content" content id="orders">
+              <h3 class="tab__header">Your Orders</h3>
+              <div class="tab__body">
+                <table class="placed__order-table" id="orders-table">
+                  <tr>
+                    <th>Orders</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                  </tr>
+                  <!-- Order rows will be dynamically inserted here -->
+                </table>
+
+                <div id="order-details" class="order-details">
+                  <!-- Order details will be displayed here -->
                 </div>
-
-                <div class="tab__content" content id="orders">
-                    <h3 class="tab__header">Your Orders</h3>
-                    <div class="tab__body">
-                        <table class="placed__order-table">
-                            <tr>
-                                <th>Orders</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Total</th>
-                                <th>Actions</th>
-                            </tr>
-
-                            <tr>
-                                <td>#1357</td>
-                                <td>March 15,2022</td>
-                                <td>Processing</td>
-                                <td>€690</td>
-                                <td><a href="#" class="view__order">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>#1357</td>
-                                <td>March 15,2022</td>
-                                <td>Completed</td>
-                                <td>€690</td>
-                                <td><a href="#" class="view__order">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>#1357</td>
-                                <td>March 15,2022</td>
-                                <td>Processing</td>
-                                <td>€690</td>
-                                <td><a href="#" class="view__order">View</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="tab__content" content id="update-profile">
-                    <h3 class="tab__header">Update Profile</h3>
-                    <div class="tab__body">
-                        <form action="" class="form grid">
-                            <input type="text" placeholder="Username" class="form__input">
-
-                            <div class="form__btn">
-                                <button class="btn btn--md">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="tab__content" content id="address">
-                    <h3 class="tab__header">Shipping Address</h3>
-                    <div class="tab__body">
-                        <address class="address">
-                            3522 Interstate <br>
-                            75 Business Spur, <br>
-                            Sault Ste. <br>
-                            Marie, MI 49783 <br>
-                        </address>
-                        <p class="city">New York</p>
-                        <a href="" class="edit">Edit</a>
-                    </div>
-                </div>
-
-                <div class="tab__content" content id="change-password">
-                    <h3 class="tab__header">Change Password</h3>
-                    <div class="tab__body">
-                        <form action="" class="form grid">
-                            <input type="password" placeholder="Current Password" class="form__input">
-                            <input type="password" placeholder="New Password" class="form__input">
-                            <input type="password" placeholder="Confirm Password" class="form__input">
-
-                            <div class="form__btn">
-                                <button class="btn btn--md">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="tab__content" content id="dashboard">
-                    <h3 class="tab__header">Orders</h3>
-                    <div class="tab__body">
-                        <p class="tab__description"></p>
-                    </div>
-                </div>
+              </div>
             </div>
+  
+              <!-- Address Section -->
+              <div class="tab__content" content id="address">
+                <h3 class="tab__header">Shipping Address</h3>
+                <div class="tab__body">
+                  <address class="address" id="address-details">
+                    <!-- Shipping Address will be populated here -->
+                  </address>
+                  <a href="editdetails.html" class="edit">Edit</a>
+                </div>
+              </div>
+
+          </div>
         </div>
       </section>
-
+    </main>
 
     <!--=============== FOOTER ===============-->
     <footer class="footer container">
@@ -280,10 +190,100 @@
         </div>
     </footer>
 
-    <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-     
-    <!--=============== MAIN JS ===============-->
     <script src="js/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userNameElement = document.getElementById("user-name");
+        const ordersTable = document.getElementById("orders-table");
+        const orderDetailsContainer = document.getElementById("order-details");
+        const addressDetails = document.getElementById("address-details");
+
+        // Fetch user details from API
+        fetch("http://localhost:5000/api/users/1")
+          .then((response) => response.json())
+          .then((user) => {
+            // Set user's name
+            userNameElement.textContent = user.fullName;
+
+            // Set user's address
+            addressDetails.innerHTML = `
+              ${user.address} <br>
+              ${user.phoneNumber} <br>
+              ${user.email}
+            `;
+          })
+          .catch((error) => {
+            console.error("Error fetching user details:", error);
+          });
+
+        // Fetch user orders from API
+        fetch("http://localhost:5000/api/orders/user/1")
+          .then((response) => response.json())
+          .then((orders) => {
+            // Loop through orders and display them in the table
+            orders.forEach((order) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>#${order.orderId}</td>
+                <td>${new Date(order.orderDate).toLocaleDateString()}</td>
+                <td>${order.status}</td>
+                <td>€${order.totalAmount.toFixed(2)}</td>
+                <td><a href="#" class="view__order" data-order-id="${order.orderId}">View</a></td>
+              `;
+              ordersTable.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.error("Error fetching orders:", error);
+          });
+
+        // Handle "View Order" click
+        ordersTable.addEventListener("click", function (e) {
+          if (e.target.classList.contains("view__order")) {
+            const orderId = e.target.getAttribute("data-order-id");
+            fetchOrderDetails(orderId);
+          }
+        });
+
+        // Function to fetch order details by order ID and display the products
+        function fetchOrderDetails(orderId) {
+          fetch(`http://localhost:5000/api/orders/${orderId}`)
+            .then((response) => response.json())
+            .then((order) => {
+              // Clear any previous order details
+              orderDetailsContainer.innerHTML = `<br>
+              <div class="order-details">
+                <h4>Order ID: #${order.orderId}</h4>
+                <p><strong>Status:</strong> ${order.status}</p>
+                <p><strong>Shipping Address:</strong> ${order.shippingAddress}</p>
+                <p><strong>Total Amount:</strong> €${order.totalAmount.toFixed(2)}</p><br>
+                <h5>Order Items:</h5>
+                <table class="placed__order-table">
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                  </tr>
+                  ${order.orderItems.map(item => `
+                    <tr>
+                      <td>${item.product.productName}</td>
+                      <td>${item.quantity}</td>
+                      <td>€${item.unitPrice.toFixed(2)}</td>
+                      <td>€${(item.quantity * item.unitPrice).toFixed(2)}</td>
+                    </tr>
+                  `).join('')}
+                </table>
+               </div>
+              `;
+            })
+            .catch((error) => {
+              console.error("Error fetching order details:", error);
+            });
+          }
+      });
+    </script>
   </body>
 </html>

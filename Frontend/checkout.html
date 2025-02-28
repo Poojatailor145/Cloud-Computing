@@ -3,256 +3,213 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== FLATICON ===============-->
-    <link
-        rel="stylesheet"
-        href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css"
-    />
-
-    <!--=============== SWIPER CSS ===============-->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
-    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
-
     <title>Coziture</title>
   </head>
   <body>
-    <!--=============== HEADER ===============-->
     <header class="header">
-        <nav class="nav container">
-            <a href="index.html" class="nav__logo">
-                <img src="images/logo.png" alt="" class="nav__logo-img">
-            </a>
-
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="index.html" class="nav__link ">Home</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="shop.html" class="nav__link">Shop</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="accounts.html" class="nav__link">My Account</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="login-register.html" class="nav__link">Login</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="header__user-actions">
-                <a href="cart.html" class="header__action-btn">
-                    <img src="images/icon-cart.svg" alt="">
-                    <span class="count">3</span>
-                </a>
-            </div>
-        </nav>
+      <nav class="nav container">
+        <a href="index.html" class="nav__logo"><img src="images/logo.png" alt="" class="nav__logo-img" /></a>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+            <li class="nav__item"><a href="shop.html" class="nav__link">Shop</a></li>
+            <li class="nav__item"><a href="accounts.html" class="nav__link">My Account</a></li>
+          </ul>
+        </div>
+        <div class="header__user-actions">
+          <a href="cart.html" class="header__action-btn">
+            <img src="images/icon-cart.svg" alt="" />
+            <span class="count" id="cart-count">0</span>
+          </a>
+        </div>
+      </nav>
     </header>
 
-    <!--=============== MAIN ===============-->
     <main class="main">
-      <!--=============== BREADCRUMB ===============-->
       <section class="breadcrumb">
         <div class="breadcrumb__list container">
-            <a href="index.html" class="breadcrumb__link">Home</a>  
-            <span class="breadcrumb__link">></span>  
-            <span class="breadcrumb__link">Shop</span> 
-            <span class="breadcrumb__link">></span>  
-            <span class="breadcrumb__link">Checkout</span>
+          <a href="index.html" class="breadcrumb__link">Home</a>
+          <span class="breadcrumb__link">></span>
+          <span class="breadcrumb__link">Checkout</span>
         </div>
       </section>
 
-      <!--=============== CHECKOUT ===============-->
       <section class="checkout section--lg">
         <div class="checkout__container container grid">
-            <div class="checkout__group">
-                <h3 class="section__title">Billing Details</h3>
-                <form action="" class="form grid">
-                    <input type="text" placeholder="Name" class="form__input">
-                    <input type="text" placeholder="Address" class="form__input">
-                    <input type="text" placeholder="City" class="form__input">
-                    <input type="text" placeholder="Country" class="form__input">
-                    <input type="text" placeholder="Postcode" class="form__input">
-                    <input type="text" placeholder="Phone" class="form__input">
-                    <input type="email" placeholder="Email" class="form__input">
-                    
-                    <h3 class="checkout__title">Additional Information</h3>
-                    <textarea name="" cols="30" rows="10" id="" placeholder="Order Note" class="form__input textarea"></textarea>
-                </form>
+          <div class="checkout__group">
+            <h3 class="section__title">Billing Details</h3>
+            <form action="" class="form grid">
+              <address class="address" id="billing-details">
+                <!-- Billing details will be populated here -->
+              </address>
+              <a href="editdetails.html" class="btn btn--md" id="change-billing">Change Details</a>
+            </form>
+          </div>
+
+          <div class="checkout__group">
+            <h3 class="section__title">Cart Total</h3>
+            <table class="order__table" id="cart-table">
+              <tr>
+                <th colspan="2">Products</th>
+                <th>Total</th>
+              </tr>
+              <!-- Cart items will be dynamically inserted here -->
+            </table>
+
+            <div class="cart__total">
+              <table class="cart__total-table">
+                <tr>
+                  <td><span class="cart__total-title">Cart Subtotal</span></td>
+                  <td><span class="cart__total-price" id="cart-subtotal">€0</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cart__total-title">Shipping</span></td>
+                  <td><span class="cart__total-price">Free Shipping</span></td>
+                </tr>
+                <tr>
+                  <td><span class="cart__total-title">Total</span></td>
+                  <td><span class="cart__total-price" id="cart-total">€0</span></td>
+                </tr>
+              </table>
+              <button class="btn btn--md" id="place-order-btn">Place Order</button>
             </div>
-
-            <div class="checkout__group">
-                <h3 class="section__title">Cart Total</h3>
-
-                <table class="order__table">
-                    <tr>
-                        <th colspan="2">Products</th>
-                        <th>Total</th>
-                    </tr>
-
-                    <tr>
-                        <td><img src="images/sofa11.webp" alt="" class="order__img"></td>
-                        <td>
-                            <h3 class="table__title">White Comfortable Sofa</h3>
-                            <p class="table__quantity">x 3</p>
-                        </td>
-
-                        <td><span class="table__price">€690</span></td>
-                    </tr>
-
-                    <tr>
-                        <td><img src="images/bed.jpg" alt="" class="order__img"></td>
-                        <td>
-                            <h3 class="table__title">Comfortable Bed</h3>
-                            <p class="table__quantity">x 3</p>
-                        </td>
-
-                        <td><span class="table__price">€690</span></td>
-                    </tr>
-
-                    <tr>
-                        <td><img src="images/chair.jpg" alt="" class="order__img"></td>
-                        <td>
-                            <h3 class="table__title">Wooden Chair</h3>
-                            <p class="table__quantity">x 3</p>
-                        </td>
-
-                        <td><span class="table__price">€690</span></td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="order__subtitle">SubTotal</span></td>
-                        <td colspan="2"><span class="table__price">€2070</span></td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="order__subtitle">Shipping</span></td>
-                        <td colspan="2"><span class="table__price">Free Shipping</span></td>
-                    </tr>
-
-                    <tr>
-                        <td><span class="order__subtitle">Total</span></td>
-                        <td colspan="2"><span class="order__grand-total">€2070</span></td>
-                    </tr>
-                </table>
-
-                <div class="payment__methods">
-                    <h3 class="checkout__title payment__title">Payment</h3>
-
-                    <div class="payment__option flex">
-                        <input type="radio" name="radio" checked class="payment__input">
-                        <label for="" class="payment__label">Direct Bank Transfer</label>
-                    </div>
-
-                    <div class="payment__option flex">
-                        <input type="radio" name="radio" checked class="payment__input">
-                        <label for="" class="payment__label">Paypal</label>
-                    </div>
-                </div>
-
-                <button class="btn btn--md">Place Order</button>
-            </div>
+          </div>
         </div>
       </section>
+    </main>
 
-
-    <!--=============== FOOTER ===============-->
     <footer class="footer container">
-        <div class="footer__container grid">
-            <div class="footer__content">
-                <a href="index.html" class="footer__logo">
-                    <img src="images/logo.png" alt="" class="footer__logo-img">
-                </a>
-
-                <h4 class="footer__subtitle">Contact</h4>
-                <p class="footer__description">
-                    <span>Address:</span> 562 Konrad Duden Weg, Frankfurt, Germany
-                </p>
-
-                <p class="footer__description">
-                    <span>Phone:</span> 01588745454
-                </p>
-
-                <p class="footer__description">
-                    <span>Working Hours:</span> 10:00 - 18:00, Mon-Sat
-                </p>
-
-                <div class="footer__social">
-                    <div class="footer__subtitle">Follow Me</div>
-                    <div class="footer_-social-links flex">
-                        <a href="">
-                            <img src="images/icon-facebook.svg" alt="" class="footer__social-icon">
-                        </a>
-
-                        <a href="">
-                            <img src="images/icon-instagram.svg" alt="" class="footer__social-icon">
-                        </a>
-
-                        <a href="">
-                            <img src="images/icon-twitter.svg" alt="" class="footer__social-icon">
-                        </a>
-
-                        <a href="">
-                            <img src="images/icon-pinterest.svg" alt="" class="footer__social-icon">
-                        </a>
-
-                        <a href="">
-                            <img src="images/icon-youtube.svg" alt="" class="footer__social-icon">
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">Address</h3>
-                <ul class="footer__links">
-                    <li><a href="" class="footer__link">About Us</a></li>
-                    <li><a href="" class="footer__link">Delivery Information</a></li>
-                    <li><a href="" class="footer__link">Privacy Policy</a></li>
-                    <li><a href="" class="footer__link">Terms & Conditions</a></li>
-                    <li><a href="" class="footer__link">Contact Us</a></li>
-                    <li><a href="" class="footer__link">Support Center</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">My Account</h3>
-                <ul class="footer__links">
-                    <li><a href="" class="footer__link">Sign In</a></li>
-                    <li><a href="" class="footer__link">View cart</a></li>
-                    <li><a href="" class="footer__link">Register</a></li>
-                    <li><a href="" class="footer__link">Track My Order</a></li>
-                    <li><a href="" class="footer__link">Help</a></li>
-                    <li><a href="" class="footer__link">Order</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">Secured Payment Gateways</h3>
-                <img src="images/payment-method.png" alt="" class="payment__img">
-            </div>
+      <div class="footer__container grid">
+        <div class="footer__content">
+          <a href="index.html" class="footer__logo"><img src="images/logo.png" alt="" class="footer__logo-img" /></a>
+          <h4 class="footer__subtitle">Contact</h4>
+          <p class="footer__description"><span>Address:</span> 562 Konrad Duden Weg, Frankfurt, Germany</p>
+          <p class="footer__description"><span>Phone:</span> 01588745454</p>
+          <p class="footer__description"><span>Working Hours:</span> 10:00 - 18:00, Mon-Sat</p>
         </div>
-
-        <div class="footer__bottom">
-            <p class="copyright">&copy; 2025 Coziture. All Rights Reserved.</p>
-        </div>
+      </div>
     </footer>
 
-    <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-     
-    <!--=============== MAIN JS ===============-->
     <script src="js/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userId = 1;
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartTable = document.getElementById("cart-table");
+        const cartSubtotal = document.getElementById("cart-subtotal");
+        const cartTotal = document.getElementById("cart-total");
+        const cartCount = document.getElementById("cart-count");
+        const billingDetails = document.getElementById("billing-details");
+
+        // Fetch user billing details from API
+        fetch(`http://localhost:5000/api/users/1`)
+          .then((response) => response.json())
+          .then((user) => {
+            billingDetails.innerHTML = `
+              <strong>${user.fullName}</strong><br>
+              ${user.address} <br>
+              ${user.phoneNumber} <br>
+              ${user.email} <br>
+            `;
+          });
+
+        // Function to update the cart display
+        function updateCart() {
+          cartTable.innerHTML = `
+            <tr>
+              <th colspan="2">Products</th>
+              <th>Total</th>
+            </tr>
+          `; // Reset the table
+
+          let subtotal = 0;
+
+          // Loop through each cart item
+          cart.forEach((item, index) => {
+            fetch(`http://localhost:5000/api/products/${item.product.productId}`)
+              .then((response) => response.json())
+              .then((product) => {
+                const productRow = document.createElement("tr");
+
+                productRow.innerHTML = `
+                  <td><img src="images/${product.imageUrl}1.jpg" alt="${product.productName}" class="order__img" /></td>
+                  <td>
+                    <h3 class="table__title">${product.productName}</h3>
+                    <p class="table__quantity">x ${item.quantity}</p>
+                  </td>
+                  <td><span class="table__price">€${(item.quantity * product.basePrice).toFixed(2)}</span></td>
+                `;
+
+                cartTable.appendChild(productRow);
+
+                subtotal += item.quantity * product.basePrice;
+
+                // Update the subtotal and total
+                cartSubtotal.textContent = `€${subtotal.toFixed(2)}`;
+                cartTotal.textContent = `€${(subtotal).toFixed(2)}`; // Adding shipping cost of 10€
+
+                // Update cart count
+                cartCount.textContent = cart.length;
+              });
+          });
+        }
+
+        // Handle quantity change
+        cartTable.addEventListener("input", function (e) {
+          if (e.target.classList.contains("quantity")) {
+            const index = e.target.closest("tr").dataset.index;
+            cart[index].quantity = parseInt(e.target.value);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart(); // Recalculate the cart
+          }
+        });
+
+        // Handle remove item
+        cartTable.addEventListener("click", function (e) {
+          if (e.target.classList.contains("table__trash")) {
+            const index = e.target.closest("tr").dataset.index;
+            cart.splice(index, 1); // Remove item from cart
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCart(); // Recalculate the cart
+          }
+        });
+
+        // Place order functionality
+        document.getElementById("place-order-btn").addEventListener("click", function () {
+          const orderItems = cart.map((item) => ({
+            product: { productId: item.product.productId },
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+          }));
+
+          // Send order data to the API
+          fetch(`http://localhost:5000/api/orders/${userId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderItems),
+          })
+            .then((response) => response.json())
+            .then((order) => {
+              // alert("Order placed successfully!");
+              localStorage.removeItem("cart"); // Clear cart after order placement
+              window.location.href = "payment.html"; // Redirect to a confirmation page
+            })
+            .catch((error) => {
+              console.error("Error placing order:", error);
+              alert("There was an error placing your order.");
+            });
+        });
+
+        // Initial cart render
+        updateCart();
+      });
+    </script>
   </body>
 </html>

@@ -53,17 +53,13 @@
                     <li class="nav__item">
                         <a href="accounts.html" class="nav__link">My Account</a>
                     </li>
-
-                    <li class="nav__item">
-                        <a href="login-register.html" class="nav__link">Login</a>
-                    </li>
                 </ul>
             </div>
 
             <div class="header__user-actions">
                 <a href="cart.html" class="header__action-btn">
                     <img src="images/icon-cart.svg" alt="">
-                    <span class="count">3</span>
+                    <span class="count" id="cart-count">3</span>
                 </a>
 
                 <div class="header__action-btn nav__toggle" id="nav-toggle">
@@ -311,12 +307,11 @@
                 productItem.classList.add('product__item');
                 productItem.innerHTML = `
                     <div class="product__banner">
-                        <a href="details.html" class="product__images">
-                            <img src="images/${product.imageUrl}.jpg" alt="${product.productName}" class="product__img default">
+                        <a href="details.html?productId=${product.productId}" class="product__images">
+                            <img src="images/${product.imageUrl}1.jpg" alt="${product.productName}" class="product__img default">
                         </a>
                     </div>
                     <div class="product__content">
-                        <span class="product__category">${product.categoryId}</span>
                         <a href="details.html"><h3 class="product__title">${product.productName}</h3></a>
                         <div class="product__rating">
                             ${generateStars(product.basePrice)}
@@ -355,10 +350,10 @@
             data.forEach(category => {
             const categoryItem = document.createElement("a");
             categoryItem.classList.add("category__item", "swiper-slide");
-            categoryItem.href = "shop.html?categoryId=" + category.categoryId;
+            categoryItem.href = "productbyCategory.html?categoryId=" + category.categoryId;
 
             categoryItem.innerHTML = `
-                <img src="images/${category.categoryName.toLowerCase().replace(/ /g, '-')}.jpg" alt="${category.categoryName}" class="category__img">
+                <img src="images/${category.categoryName.toLowerCase().replace(/ /g, '-').replace(/s$/, '')}11.jpg" alt="${category.categoryName}" class="category__img">
                 <h3 class="category__title">${category.categoryName}</h3>
             `;
 

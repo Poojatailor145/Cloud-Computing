@@ -3,22 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--=============== FLATICON ===============-->
     <link
         rel="stylesheet"
         href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css"
     />
-
-    <!--=============== SWIPER CSS ===============-->
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-
-    <!--=============== CSS ===============-->
     <link rel="stylesheet" href="css/styles.css" />
-
     <title>Coziture</title>
   </head>
   <body>
@@ -31,125 +24,36 @@
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="index.html" class="nav__link">Home</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="shop.html" class="nav__link">Shop</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="accounts.html" class="nav__link">My Account</a>
-                    </li>
-
-                    <li class="nav__item">
-                        <a href="login-register.html" class="nav__link">Login</a>
-                    </li>
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="shop.html" class="nav__link">Shop</a></li>
+                    <li class="nav__item"><a href="accounts.html" class="nav__link">My Account</a></li>
                 </ul>
             </div>
 
             <div class="header__user-actions">
                 <a href="cart.html" class="header__action-btn">
                     <img src="images/icon-cart.svg" alt="">
-                    <span class="count">3</span>
+                    <span class="count" id="cart-count">0</span>
                 </a>
             </div>
         </nav>
     </header>
 
-    <!--=============== MAIN ===============-->
     <main class="main">
-      <!--=============== BREADCRUMB ===============-->
       <section class="breadcrumb">
         <div class="breadcrumb__list container">
             <a href="index.html" class="breadcrumb__link">Home</a>  
             <span class="breadcrumb__link">></span>  
-            <span class="breadcrumb__link">Sofa</span> 
-            <span class="breadcrumb__link">></span>  
-            <span class="breadcrumb__link">White Sofa</span>
+            <span class="breadcrumb__link" id="product-name">Product Name</span>
         </div>
       </section>
 
-      <!--=============== DETAILS ===============-->
       <section class="details section--lg">
-        <div class="details__container container grid">
-            <div class="details__group">
-                <img src="images/sofa11.webp" alt="" class="details__img">
-                <div class="details__small-images grid">
-                    <img src="images/sofa12.webp" alt="" class="details__small-img">
-                    <img src="images/sofa13.webp" alt="" class="details__small-img">
-                    <img src="images/sofa11.webp" alt="" class="details__small-img">
-                </div>
-            </div>
-            
-            <div class="details__group">
-                <h3 class="details__title">White Comfortable Sofa</h3>
-                <p class="details__brand">Brand: <span>Woodspace</span></p>
-
-                <div class="details__price flex">
-                    <span class="new__price">€230</span>
-                    <span class="old__price">€250</span>
-                    <span class="save__price">25% Off</span>
-                </div>
-
-                <p class="short__description">
-                    Upgrade your living room with Royal Oak's stylish and comfortable sofas. Browse our wide range of designs to find the perfect fit for your home decor.
-                </p>
-
-                <ul class="product__list">
-                    <li class="list__item flex">
-                        <i class="fi-rs-crown"> 1 Year Woodspace Brand Warranty</i>
-                    </li>
-
-                    <li class="list__item flex">
-                        <i class="fi-rs-refresh"> 30 Day Return Policy</i>
-                    </li>
-
-                    <li class="list__item flex">
-                        <i class="fi-rs-credit-card"> Cash On Delivery Available</i>
-                    </li>
-                </ul>
-
-                <div class="details__color flex">
-                    <span class="details__color-title">Color</span>
-
-                    <ul class="color__list">
-                        <li><a href="#" class="color__link" style="background-color: hsl(37, 100%, 65%);"></a></li>
-                        <li><a href="#" class="color__link" style="background-color: hsl(353, 100%, 67%);"></a></li>
-                        <li><a href="#" class="color__link" style="background-color: hsl(49, 100%, 60%);"></a></li>
-                        <li><a href="#" class="color__link" style="background-color: hsl(304, 100%, 78%);"></a></li>
-                        <li><a href="#" class="color__link" style="background-color: hsl(126, 61%, 52%);"></a></li>
-                    </ul>
-                </div>
-
-                <div class="details__size flex">
-                    <span class="details__size-title">Size</span>
-
-                    <ul class="size__list">
-                        <li><a href="#" class="size__link size__active">S</a></li>
-                        <li><a href="#" class="size__link">M</a></li>
-                        <li><a href="#" class="size__link ">L</a></li>
-                        <li><a href="#" class="size__link">XL</a></li>
-                        <li><a href="#" class="size__link">XXL</a></li>
-                    </ul>
-                </div>
-
-                <div class="details__action">
-                    <input type="number" class="quantity" value="3">
-                    <a href="#" class="btn btn--sm">Add To Cart</a>
-                </div>
-
-                <ul class="details__meta">
-                    <li class="meta__list flex"><span>SKU:</span> FWM15VKT</li>
-                    <li class="meta__list flex"><span>Tags:</span> Furniture,Sofa</li>
-                    <li class="meta__list flex"><span>Availability</span> 8  Items In Stock</li>
-                </ul>
-            </div>
+        <div class="details__container container grid" id="product-details">
+            <!-- Product details will be injected here dynamically -->
         </div>
       </section>
 
-      <!--=============== DETAILS TAB ===============-->
       <section class="details__tab container">
         <div class="detail__tabs">
             <span class="detail__tab active__tab">Additional Info</span>
@@ -157,139 +61,22 @@
 
         <div class="details__tabs-content">
             <div class="details__tab-content active-tab" content id="info">
-                <table class="info__table">
-                    <tr>
-                        <th>Stand Up</th>
-                        <td>35"L x 24"W x 37-45"H(front to back wheel)</td>
-                    </tr>
-                    <tr>
-                        <th>Frame</th>
-                        <td>Aluminium</td>
-                    </tr>
-                    <tr>
-                        <th>Weight</th>
-                        <td>20 LBS</td>
-                    </tr>
-                    <tr>
-                        <th>Weight Capacity</th>
-                        <td>60 LBS</td>
-                    </tr>
-
+                <table class="info__table" id="product-table">
+                    <!-- Product info will be injected here dynamically -->
                 </table>
             </div>
         </div>
       </section>
 
-      <!--=============== PRODUCTS ===============-->
       <section class="products container section--lg">
         <h3 class="section__title"><span>Related</span> Products</h3>
 
-        <div class="products__container grid">
-            <div class="product__item">
-                <div class="product__banner">
-                    <a href="details.html" class="product__images">
-                        <img src="images/chair.jpg" alt="" class="product__img default">
-                    </a>
-                </div>
-
-                <div class="product__content">
-                    <span class="product__category">Clothing</span>
-                    <a href="details.html"><h3 class="product__title">Wooden Chair</h3></a>
-                    <div class="product__rating">
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                    </div>
-                    <div class="product__price flex">
-                        <span class="new__price">€230</span>
-                        <span class="old__price">€245</span>
-                    </div>
-                    
-                    
-                </div>
-            </div>
-
-            <div class="product__item">
-                <div class="product__banner">
-                    <a href="details.html" class="product__images">
-                        <img src="images/bed.jpg" alt="" class="product__img default">
-                    </a>
-                </div>
-
-                <div class="product__content">
-                    <span class="product__category">Clothing</span>
-                    <a href="details.html"><h3 class="product__title">Wooden Chair</h3></a>
-                    <div class="product__rating">
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                    </div>
-                    <div class="product__price flex">
-                        <span class="new__price">€230</span>
-                        <span class="old__price">€245</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="product__item">
-                <div class="product__banner">
-                    <a href="details.html" class="product__images">
-                        <img src="images/cabinet.jpg" alt="" class="product__img default">
-                    </a>
-                </div>
-
-                <div class="product__content">
-                    <span class="product__category">Clothing</span>
-                    <a href="details.html"><h3 class="product__title">Wooden Chair</h3></a>
-                    <div class="product__rating">
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                    </div>
-                    <div class="product__price flex">
-                        <span class="new__price">€230</span>
-                        <span class="old__price">€245</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="product__item">
-                <div class="product__banner">
-                    <a href="details.html" class="product__images">
-                        <img src="images/chair.jpg" alt="" class="product__img default">
-                    </a>
-                </div>
-
-                <div class="product__content">
-                    <span class="product__category">Clothing</span>
-                    <a href="details.html"><h3 class="product__title">Wooden Chair</h3></a>
-                    <div class="product__rating">
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                        <i class="fi fi-rs-star"></i>
-                    </div>
-                    <div class="product__price flex">
-                        <span class="new__price">€230</span>
-                        <span class="old__price">€245</span>
-                    </div>
-
-                </div>
-            </div>
-
+        <div class="products__container grid" id="related-products">
+            <!-- Related products will be injected here -->
         </div>
       </section>
+    </main>
 
-    <!--=============== FOOTER ===============-->
     <footer class="footer container">
         <div class="footer__container grid">
             <div class="footer__content">
@@ -373,10 +160,141 @@
         </div>
     </footer>
 
-    <!--=============== SWIPER JS ===============-->
-    <script src=""></script>
-
-    <!--=============== MAIN JS ===============-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('productId');
+
+        if (!productId) {
+            alert('Product not found');
+            window.location.href = 'shop.html'; 
+        }
+
+        fetch(`http://localhost:5000/api/products/${productId}`)
+          .then(response => response.json())
+          .then(product => {
+            document.getElementById('product-name').textContent = product.productName;
+
+            const productDetailsContainer = document.getElementById('product-details');
+            const alertdisplay = document.getElementById('stock-alert');
+            productDetailsContainer.innerHTML = `
+              <div class="details__group">
+                <img src="images/${product.imageUrl}1.jpg" alt="${product.productName}" class="details__img">
+                <div class="details__small-images grid">
+                    <img src="images/${product.imageUrl}1.jpg" alt="" class="details__small-img">
+                    <img src="images/${product.imageUrl}2.jpg" alt="" class="details__small-img">
+                    <img src="images/${product.imageUrl}3.jpg" alt="" class="details__small-img">
+                </div>
+              </div>
+              
+              <div class="details__group">
+                <h3 class="details__title">${product.productName}</h3>
+                <p class="details__brand">Brand: <span>${product.supplierName}</span></p>
+                <div class="details__price flex">
+                  <span class="new__price">€${product.basePrice}</span>
+                  <span class="old__price">€${(product.basePrice * 1.2).toFixed(2)}</span>
+                  <span class="save__price">25% Off</span>
+                </div>
+                <p class="short__description">${product.description}</p>
+
+                <ul class="product__list">
+                    <li class="list__item flex"><i class="fi-rs-crown"> 1 Year ${product.supplierName} Warranty</i></li>
+                    <li class="list__item flex"><i class="fi-rs-refresh"> 30 Day Return Policy</i></li>
+                    <li class="list__item flex"><i class="fi-rs-credit-card"> Cash On Delivery Available</i></li>
+                </ul>
+                <br>
+
+                <div class="details__action">
+                  <input type="number" class="quantity" value="1" id="quantity">
+                  <button class="btn btn--sm" id="add-to-cart">Add To Cart</button>
+                </div>
+              </div>
+            `;
+            const mainImg = document.querySelector('.details__img'),
+            smallImgs = document.querySelectorAll('.details__small-img');
+
+            smallImgs.forEach((img) => {
+                img.addEventListener('click', function() {
+                mainImg.src = this.src;  
+                });
+            });
+
+            const productDetailsTable = document.getElementById('product-table');
+            productDetailsTable.innerHTML = `
+                    <tr><th>Weight</th><td>${product.weightKg}</td></tr>
+                    <tr><th>Dimensions</th><td>${product.dimensionsCm}</td></tr>
+                    <tr><th>Material</th><td>${product.materialType}</td></tr>
+                    <tr><th>Stock Quantity</th><td>${product.stockQuantity}</td></tr>
+            `;
+
+            document.getElementById('add-to-cart').addEventListener('click', function() {
+              addToCart(product);
+            });
+
+            // Fetch and display related products (e.g., same category)
+            fetch(`http://localhost:5000/api/products/category/${product.categoryId}`)
+                .then(response => response.json())
+                .then(relatedProducts => {
+                const relatedProductsContainer = document.getElementById('related-products');
+                relatedProducts.forEach(relatedProduct => {
+                    const productItem = document.createElement('div');
+                    productItem.classList.add('product__item');
+                    productItem.innerHTML = `
+                    <div class="product__banner">
+                        <a href="details.html?productId=${relatedProduct.productId}" class="product__images">
+                        <img src="images/${relatedProduct.imageUrl}1.jpg" alt="${relatedProduct.productName}" class="product__img default">
+                        </a>
+                    </div>
+                    <div class="product__content">
+                        <a href="details.html?productId=${relatedProduct.productId}"><h3 class="product__title">${relatedProduct.productName}</h3></a>
+                        <div class="product__price flex">
+                        <span class="new__price">€${relatedProduct.basePrice}</span>
+                        <span class="old__price">€${(relatedProduct.basePrice * 1.2).toFixed(2)}</span>
+                        </div>
+                    </div>
+                    `;
+                    relatedProductsContainer.appendChild(productItem);
+                });
+                })
+                .catch(error => console.error("Error fetching related products:", error));
+          })
+          .catch(error => {
+            console.error("Error fetching product details:", error);
+            alert('Product details could not be loaded');
+          });
+      });
+
+      function addToCart(product) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existingProductIndex = cart.findIndex(item => item.product.productId === product.productId);
+        
+        if (existingProductIndex >= 0) {
+          cart[existingProductIndex].quantity += parseInt(document.getElementById('quantity').value);
+        } else {
+          cart.push({
+            product: {productId: product.productId},
+            quantity: parseInt(document.getElementById('quantity').value),
+            unitPrice: product.basePrice
+          });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        window.location.href='cart.html'
+      }
+
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-count').textContent = cartCount;
+      }          
+
+      // Update the cart count when the page loads
+      window.onload = updateCartCount;
+    </script>
   </body>
 </html>

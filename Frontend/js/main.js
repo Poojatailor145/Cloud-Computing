@@ -113,3 +113,9 @@ tabs.forEach((tab) =>{
 
   });
 });
+
+
+/*=============== UPDATE CART COUNT ===============*/
+const cartCount = document.getElementById("cart-count");
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cartCount.textContent = cart.length;
