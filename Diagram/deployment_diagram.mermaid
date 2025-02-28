@@ -1,0 +1,50 @@
+flowchart TB
+    Users((Users))
+    
+    subgraph "Production Environment"
+        LB[Load Balancer]
+        
+        subgraph "Application Servers"
+            WebApp1[Web App Server 1]
+            WebApp2[Web App Server 2]
+        end
+        
+        subgraph "Database"
+            PrimaryDB[(Primary Database)]
+            BackupDB[(Backup Database)]
+        end
+        
+        subgraph "Storage"
+            FileStorage[File Storage]
+        end
+        
+        subgraph "External Services"
+            Payment[Payment Gateway]
+            Email[Email Service]
+        end
+    end
+    
+    %% Connections
+    Users -->|HTTPS| LB
+    LB --> WebApp1
+    LB --> WebApp2
+    WebApp1 --> PrimaryDB
+    WebApp2 --> PrimaryDB
+    PrimaryDB --> BackupDB
+    WebApp1 --> FileStorage
+    WebApp2 --> FileStorage
+    WebApp1 & WebApp2 --> Payment
+    WebApp1 & WebApp2 --> Email
+    
+    %% Styling
+    classDef user fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px
+    classDef infra fill:#d5e8d4,stroke:#82b366,stroke-width:1px
+    classDef database fill:#ffe6cc,stroke:#d79b00,stroke-width:1px
+    classDef storage fill:#fff2cc,stroke:#d6b656,stroke-width:1px
+    classDef external fill:#f5f5f5,stroke:#666666,stroke-width:1px
+    
+    class Users user
+    class LB,WebApp1,WebApp2 infra
+    class PrimaryDB,BackupDB database
+    class FileStorage storage
+    class Payment,Email external
