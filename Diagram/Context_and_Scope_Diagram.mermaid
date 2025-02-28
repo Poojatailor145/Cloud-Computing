@@ -1,0 +1,27 @@
+flowchart TB
+    subgraph "External Systems"
+        AuthProvider["Authentication Provider\n(OAuth/OIDC)"]
+        PaymentGateway["Payment Gateway"]
+        EmailService["Email Service"]
+        AnalyticsSystem["Analytics System"]
+    end
+    
+    subgraph "Demo Application Boundary"
+        DemoApp["Demo Application System"]
+    end
+    
+    User((End User)) -->|Interacts with| DemoApp
+    Admin((Administrator)) -->|Manages| DemoApp
+    
+    DemoApp <-->|Authenticates users| AuthProvider
+    DemoApp <-->|Processes payments| PaymentGateway
+    DemoApp -->|Sends notifications| EmailService
+    DemoApp -->|Reports usage data| AnalyticsSystem
+    
+    classDef external fill:#f9f9f9,stroke:#999,stroke-width:1px
+    classDef system fill:#d5e8d4,stroke:#82b366,stroke-width:2px
+    classDef user fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px
+    
+    class AuthProvider,PaymentGateway,EmailService,AnalyticsSystem external
+    class DemoApp system
+    class User,Admin user
