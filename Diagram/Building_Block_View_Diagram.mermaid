@@ -1,0 +1,68 @@
+flowchart TB
+    subgraph "Demo Application"
+        subgraph "Frontend Layer"
+            WebUI["Web Interface"]
+            StaticContent["AWS S3 + CloudFront\nStatic Content Hosting"]
+        end
+        
+        subgraph "API Layer"
+            APIGateway["AWS API Gateway"]
+            AuthService["Authentication Service"]
+            LambdaFunctions["AWS Lambda\n(Notifications, Tasks)"]
+        end
+        
+        subgraph "Service Layer"
+            UserService["User Service"]
+            ProductService["Product Service"]
+            InventoryService["Inventory Management Service"]
+            OrderService["Order Service\n(with Payment Processing)"]
+            NotificationService["Notification Service"]
+        end
+        
+        subgraph "Data Layer"
+            UserDB[(AWS RDS\nPostgreSQL\nUsers)]
+            ProductDB[(AWS RDS\nPostgreSQL\nProducts)]
+            OrderDB[(AWS RDS\nPostgreSQL\nOrders)]
+            ElastiCache[(AWS ElastiCache)]
+        end
+    end
+    
+    %% Frontend to API connections
+    WebUI <--> APIGateway
+    StaticContent <-.-> WebUI
+    
+    %% API to Service connections
+    APIGateway <--> AuthService
+    APIGateway <--> UserService
+    APIGateway <--> ProductService
+    APIGateway <--> OrderService
+    APIGateway <--> InventoryService
+    LambdaFunctions <--> NotificationService
+    
+    %% Service to Service connections
+    OrderService <--> UserService
+    OrderService <--> ProductService
+    OrderService <--> NotificationService
+    ProductService <--> InventoryService
+    
+    %% Service to Data connections
+    UserService <--> UserDB
+    ProductService <--> ProductDB
+    InventoryService <--> ProductDB
+    OrderService <--> OrderDB
+    UserService <--> ElastiCache
+    ProductService <--> ElastiCache
+    OrderService <--> ElastiCache
+    InventoryService <--> ElastiCache
+    
+    classDef frontend fill:#f5f5f5,stroke:#666,stroke-width:1px
+    classDef api fill:#d5e8d4,stroke:#82b366,stroke-width:1px
+    classDef service fill:#dae8fc,stroke:#6c8ebf,stroke-width:1px
+    classDef database fill:#ffe6cc,stroke:#d79b00,stroke-width:1px
+    classDef aws fill:#E9F3E6,stroke:#7AA116,stroke-width:1px
+    
+    class WebUI frontend
+    class StaticContent aws
+    class APIGateway,LambdaFunctions aws
+    class AuthService,UserService,ProductService,OrderService,NotificationService,InventoryService service
+    class UserDB,ProductDB,OrderDB,ElastiCache aws
