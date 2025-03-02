@@ -228,23 +228,23 @@
                 <div class="footer__social">
                     <div class="footer__subtitle">Follow Me</div>
                     <div class="footer_-social-links flex">
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-facebook.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-instagram.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-twitter.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-pinterest.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-youtube.svg" alt="" class="footer__social-icon">
                         </a>
                     </div>
@@ -256,24 +256,24 @@
             <div class="footer__content">
                 <h3 class="footer__title">Address</h3>
                 <ul class="footer__links">
-                    <li><a href="" class="footer__link">About Us</a></li>
-                    <li><a href="" class="footer__link">Delivery Information</a></li>
-                    <li><a href="" class="footer__link">Privacy Policy</a></li>
-                    <li><a href="" class="footer__link">Terms & Conditions</a></li>
-                    <li><a href="" class="footer__link">Contact Us</a></li>
-                    <li><a href="" class="footer__link">Support Center</a></li>
+                    <li><a href="#" class="footer__link">About Us</a></li>
+                    <li><a href="#" class="footer__link">Delivery Information</a></li>
+                    <li><a href="#" class="footer__link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer__link">Terms & Conditions</a></li>
+                    <li><a href="#" class="footer__link">Contact Us</a></li>
+                    <li><a href="#" class="footer__link">Support Center</a></li>
                 </ul>
             </div>
 
             <div class="footer__content">
                 <h3 class="footer__title">My Account</h3>
                 <ul class="footer__links">
-                    <li><a href="" class="footer__link">Sign In</a></li>
-                    <li><a href="" class="footer__link">View cart</a></li>
-                    <li><a href="" class="footer__link">Register</a></li>
-                    <li><a href="" class="footer__link">Track My Order</a></li>
-                    <li><a href="" class="footer__link">Help</a></li>
-                    <li><a href="" class="footer__link">Order</a></li>
+                    <li><a href="#" class="footer__link">Sign In</a></li>
+                    <li><a href="#" class="footer__link">View cart</a></li>
+                    <li><a href="#" class="footer__link">Register</a></li>
+                    <li><a href="#" class="footer__link">Track My Order</a></li>
+                    <li><a href="#" class="footer__link">Help</a></li>
+                    <li><a href="#" class="footer__link">Order</a></li>
                 </ul>
             </div>
 
@@ -296,7 +296,7 @@
 
     <script>
       // Fetching product data from API and inserting it dynamically
-      fetch('http://localhost:5000/api/products')  // Ensure this URL is correct
+      fetch('http://WebshopBackend-env.eba-xvipbktv.us-east-1.elasticbeanstalk.com/api/products')  // Ensure this URL is correct
         .then(response => response.json()) // Convert response to JSON
         .then(data => {
             const productContainer = document.getElementById('product-list');
@@ -340,7 +340,7 @@
       }
 
 
-      fetch('http://localhost:5000/api/categories')
+      fetch('http://WebshopBackend-env.eba-xvipbktv.us-east-1.elasticbeanstalk.com/api/categories')
         .then(response => response.json()) // Convert the response to JSON
         .then(data => {
             // Get the container where categories will be displayed

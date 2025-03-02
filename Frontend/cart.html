@@ -11,22 +11,49 @@
   <body>
     <header class="header">
       <nav class="nav container">
-        <a href="index.html" class="nav__logo"><img src="images/logo.png" alt="" class="nav__logo-img" /></a>
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
-            <li class="nav__item"><a href="shop.html" class="nav__link">Shop</a></li>
-            <li class="nav__item"><a href="accounts.html" class="nav__link">My Account</a></li>
-          </ul>
-        </div>
-        <div class="header__user-actions">
-          <a href="cart.html" class="header__action-btn">
-            <img src="images/icon-cart.svg" alt="" />
-            <span class="count" id="cart-count">0</span>
+          <a href="index.html" class="nav__logo">
+              <img src="images/logo.png" alt="" class="nav__logo-img">
           </a>
-        </div>
+
+          <div class="nav__menu" id="nav-menu">
+
+              <div class="nav__menu-top">
+                  <a href="index.html" class="nav__menu-logo">
+                      <img src="images/logo.png" alt="">
+                  </a>
+
+                  <div class="nav__close" id="nav-close">
+                      <i class="fi fi-rs-cross-small"></i>
+                  </div>
+              </div>
+              
+              <ul class="nav__list">
+                  <li class="nav__item">
+                      <a href="index.html" class="nav__link">Home</a>
+                  </li>
+
+                  <li class="nav__item">
+                      <a href="shop.html" class="nav__link">Shop</a>
+                  </li>
+
+                  <li class="nav__item">
+                      <a href="accounts.html" class="nav__link">My Account</a>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="header__user-actions">
+              <a href="cart.html" class="header__action-btn">
+                  <img src="images/icon-cart.svg" alt="">
+                  <span class="count" id="cart-count">3</span>
+              </a>
+
+              <div class="header__action-btn nav__toggle" id="nav-toggle">
+                  <img src="images/menu-burger.svg" alt="">
+              </div>
+          </div>
       </nav>
-    </header>
+  </header>
 
     <main class="main">
       <section class="breadcrumb">
@@ -89,15 +116,86 @@
 
     <footer class="footer container">
       <div class="footer__container grid">
-        <div class="footer__content">
-          <a href="index.html" class="footer__logo"><img src="images/logo.png" alt="" class="footer__logo-img" /></a>
-          <h4 class="footer__subtitle">Contact</h4>
-          <p class="footer__description"><span>Address:</span> 562 Konrad Duden Weg, Frankfurt, Germany</p>
-          <p class="footer__description"><span>Phone:</span> 01588745454</p>
-          <p class="footer__description"><span>Working Hours:</span> 10:00 - 18:00, Mon-Sat</p>
-        </div>
+          <div class="footer__content">
+              <a href="index.html" class="footer__logo">
+                  <img src="images/logo.png" alt="" class="footer__logo-img">
+              </a>
+
+              <h4 class="footer__subtitle">Contact</h4>
+              <p class="footer__description">
+                  <span>Address:</span> 562 Konrad Duden Weg, Frankfurt, Germany
+              </p>
+
+              <p class="footer__description">
+                  <span>Phone:</span> 01588745454
+              </p>
+
+              <p class="footer__description">
+                  <span>Working Hours:</span> 10:00 - 18:00, Mon-Sat
+              </p>
+
+              <div class="footer__social">
+                  <div class="footer__subtitle">Follow Me</div>
+                  <div class="footer_-social-links flex">
+                      <a href="#">
+                          <img src="images/icon-facebook.svg" alt="" class="footer__social-icon">
+                      </a>
+
+                      <a href="#">
+                          <img src="images/icon-instagram.svg" alt="" class="footer__social-icon">
+                      </a>
+
+                      <a href="#">
+                          <img src="images/icon-twitter.svg" alt="" class="footer__social-icon">
+                      </a>
+
+                      <a href="#">
+                          <img src="images/icon-pinterest.svg" alt="" class="footer__social-icon">
+                      </a>
+
+                      <a href="#">
+                          <img src="images/icon-youtube.svg" alt="" class="footer__social-icon">
+                      </a>
+                  </div>
+
+              </div>
+
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title">Address</h3>
+              <ul class="footer__links">
+                  <li><a href="#" class="footer__link">About Us</a></li>
+                  <li><a href="#" class="footer__link">Delivery Information</a></li>
+                  <li><a href="#" class="footer__link">Privacy Policy</a></li>
+                  <li><a href="#" class="footer__link">Terms & Conditions</a></li>
+                  <li><a href="#" class="footer__link">Contact Us</a></li>
+                  <li><a href="#" class="footer__link">Support Center</a></li>
+              </ul>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title">My Account</h3>
+              <ul class="footer__links">
+                  <li><a href="#" class="footer__link">Sign In</a></li>
+                  <li><a href="#" class="footer__link">View cart</a></li>
+                  <li><a href="#" class="footer__link">Register</a></li>
+                  <li><a href="#" class="footer__link">Track My Order</a></li>
+                  <li><a href="#" class="footer__link">Help</a></li>
+                  <li><a href="#" class="footer__link">Order</a></li>
+              </ul>
+          </div>
+
+          <div class="footer__content">
+              <h3 class="footer__title">Secured Payment Gateways</h3>
+              <img src="images/payment-method.png" alt="" class="payment__img">
+          </div>
       </div>
-    </footer>
+
+      <div class="footer__bottom">
+          <p class="copyright">&copy; 2025 Coziture. All Rights Reserved.</p>
+      </div>
+  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
@@ -127,7 +225,7 @@
 
           // Loop through each cart item
           cart.forEach((item, index) => {
-            fetch(`http://localhost:5000/api/products/${item.product.productId}`)
+            fetch(`http://WebshopBackend-env.eba-xvipbktv.us-east-1.elasticbeanstalk.com/api/products/${item.product.productId}`)
               .then((response) => response.json())
               .then((product) => {
                 const productRow = document.createElement("tr");

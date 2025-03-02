@@ -12,22 +12,49 @@
     <!--=============== HEADER ===============-->
     <header class="header">
       <nav class="nav container">
-        <a href="index.html" class="nav__logo"><img src="images/logo.png" alt="" class="nav__logo-img" /></a>
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
-            <li class="nav__item"><a href="shop.html" class="nav__link">Shop</a></li>
-            <li class="nav__item"><a href="accounts.html" class="nav__link active-link">My Account</a></li>
-          </ul>
-        </div>
-        <div class="header__user-actions">
-          <a href="cart.html" class="header__action-btn">
-            <img src="images/icon-cart.svg" alt="" />
-            <span class="count" id="cart-count">0</span>
+          <a href="index.html" class="nav__logo">
+              <img src="images/logo.png" alt="" class="nav__logo-img">
           </a>
-        </div>
+
+          <div class="nav__menu" id="nav-menu">
+
+              <div class="nav__menu-top">
+                  <a href="index.html" class="nav__menu-logo">
+                      <img src="images/logo.png" alt="">
+                  </a>
+
+                  <div class="nav__close" id="nav-close">
+                      <i class="fi fi-rs-cross-small"></i>
+                  </div>
+              </div>
+              
+              <ul class="nav__list">
+                  <li class="nav__item">
+                      <a href="index.html" class="nav__link">Home</a>
+                  </li>
+
+                  <li class="nav__item">
+                      <a href="shop.html" class="nav__link">Shop</a>
+                  </li>
+
+                  <li class="nav__item">
+                      <a href="accounts.html" class="nav__link active-link">My Account</a>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="header__user-actions">
+              <a href="cart.html" class="header__action-btn">
+                  <img src="images/icon-cart.svg" alt="">
+                  <span class="count" id="cart-count">3</span>
+              </a>
+
+              <div class="header__action-btn nav__toggle" id="nav-toggle">
+                  <img src="images/menu-burger.svg" alt="">
+              </div>
+          </div>
       </nav>
-    </header>
+  </header>
 
     <!--=============== MAIN ===============-->
     <main class="main">
@@ -131,23 +158,23 @@
                 <div class="footer__social">
                     <div class="footer__subtitle">Follow Me</div>
                     <div class="footer_-social-links flex">
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-facebook.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-instagram.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-twitter.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-pinterest.svg" alt="" class="footer__social-icon">
                         </a>
 
-                        <a href="">
+                        <a href="#">
                             <img src="images/icon-youtube.svg" alt="" class="footer__social-icon">
                         </a>
                     </div>
@@ -159,24 +186,24 @@
             <div class="footer__content">
                 <h3 class="footer__title">Address</h3>
                 <ul class="footer__links">
-                    <li><a href="" class="footer__link">About Us</a></li>
-                    <li><a href="" class="footer__link">Delivery Information</a></li>
-                    <li><a href="" class="footer__link">Privacy Policy</a></li>
-                    <li><a href="" class="footer__link">Terms & Conditions</a></li>
-                    <li><a href="" class="footer__link">Contact Us</a></li>
-                    <li><a href="" class="footer__link">Support Center</a></li>
+                    <li><a href="#" class="footer__link">About Us</a></li>
+                    <li><a href="#" class="footer__link">Delivery Information</a></li>
+                    <li><a href="#" class="footer__link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer__link">Terms & Conditions</a></li>
+                    <li><a href="#" class="footer__link">Contact Us</a></li>
+                    <li><a href="#" class="footer__link">Support Center</a></li>
                 </ul>
             </div>
 
             <div class="footer__content">
                 <h3 class="footer__title">My Account</h3>
                 <ul class="footer__links">
-                    <li><a href="" class="footer__link">Sign In</a></li>
-                    <li><a href="" class="footer__link">View cart</a></li>
-                    <li><a href="" class="footer__link">Register</a></li>
-                    <li><a href="" class="footer__link">Track My Order</a></li>
-                    <li><a href="" class="footer__link">Help</a></li>
-                    <li><a href="" class="footer__link">Order</a></li>
+                    <li><a href="#" class="footer__link">Sign In</a></li>
+                    <li><a href="#" class="footer__link">View cart</a></li>
+                    <li><a href="#" class="footer__link">Register</a></li>
+                    <li><a href="#" class="footer__link">Track My Order</a></li>
+                    <li><a href="#" class="footer__link">Help</a></li>
+                    <li><a href="#" class="footer__link">Order</a></li>
                 </ul>
             </div>
 
@@ -202,7 +229,7 @@
         const addressDetails = document.getElementById("address-details");
 
         // Fetch user details from API
-        fetch("http://localhost:5000/api/users/1")
+        fetch("http://WebshopBackend-env.eba-xvipbktv.us-east-1.elasticbeanstalk.com/api/users/1")
           .then((response) => response.json())
           .then((user) => {
             // Set user's name
@@ -220,7 +247,7 @@
           });
 
         // Fetch user orders from API
-        fetch("http://localhost:5000/api/orders/user/1")
+        fetch("http://WebshopBackend-env.eba-xvipbktv.us-east-1.elasticbeanstalk.com/api/orders/user/1")
           .then((response) => response.json())
           .then((orders) => {
             // Loop through orders and display them in the table
@@ -250,7 +277,7 @@
 
         // Function to fetch order details by order ID and display the products
         function fetchOrderDetails(orderId) {
-          fetch(`http://localhost:5000/api/orders/${orderId}`)
+          fetch(`http://WebshopBackend-env.eba-xvipbktv.us-east-1.elasticbeanstalk.com/api/orders/${orderId}`)
             .then((response) => response.json())
             .then((order) => {
               // Clear any previous order details
